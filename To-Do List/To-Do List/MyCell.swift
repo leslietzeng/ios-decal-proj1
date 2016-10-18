@@ -1,6 +1,7 @@
 //
 //  MyCell.swift
 //  To-Do List
+//  CITATION: BEMCheckBox is an open source button/switch
 //
 //  Created by Leslie Tzeng on 10/16/16.
 //  Copyright © 2016 Leslie Tzeng. All rights reserved.
@@ -15,6 +16,7 @@ class MyCell: UITableViewCell, BEMCheckBoxDelegate {
         super.init(style:style, reuseIdentifier: reuseIdentifier)
         checkbox = BEMCheckBox()
         checkbox?.delegate = self
+        checkbox?.setOn(false, animated:false)
         setupViews()
         
     }
@@ -40,6 +42,9 @@ class MyCell: UITableViewCell, BEMCheckBoxDelegate {
         
         
         
+    }
+    func clear() {
+        checkbox?.setOn(false, animated:false)
     }
     
     func didTap(_ checkBox: BEMCheckBox) {

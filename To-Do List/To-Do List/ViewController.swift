@@ -34,7 +34,6 @@ class ViewController: UITableViewController, ListDelegate, BEMCheckBoxDelegate {
     }
     var temp = 0
     func countDown(sender: Timer) {
-        print("called")
         for index in 0..<timeArray.count {
             if checkedarray[index] {
                 timeArray[index] -= 1
@@ -128,6 +127,8 @@ class ViewController: UITableViewController, ListDelegate, BEMCheckBoxDelegate {
             array.remove(at: indexPath.row)
             checkedarray.remove(at:indexPath.row)
             timeArray.remove(at: indexPath.row)
+            let cell = self.tableView.cellForRow(at: indexPath) as? MyCell
+            cell?.clear()
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
             for i in array {
@@ -142,6 +143,7 @@ class ViewController: UITableViewController, ListDelegate, BEMCheckBoxDelegate {
     func checkOff(cell: UITableViewCell) {
         let atIndex:IndexPath = self.tableView.indexPath(for: cell)!
         checkedarray[atIndex.row] = true
+        
         // Delete the row from the data source
     }
     func undoCheckOff(cell: UITableViewCell) {

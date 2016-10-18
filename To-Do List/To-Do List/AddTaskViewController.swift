@@ -25,6 +25,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         inputBox?.backgroundColor = UIColor.white
         inputBox?.isEnabled = true
         inputBox?.borderStyle = UITextBorderStyle.roundedRect //change this to none.
+        inputBox?.becomeFirstResponder()
         displayContainer.addSubview(inputBox!)
         self.view.addSubview(displayContainer)
         
@@ -36,14 +37,23 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     }
     
     func done(_ sender: UIBarButtonItem) {
-        print(inputBox?.text)
+        addTask()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        addTask()
+        return true
+    }
+    func addTask() {
+        
+        
         if let toDo = inputBox?.text {
-            delegate?.addToList(newItem: toDo)
+            if (toDo != "") {
+                delegate?.addToList(newItem: toDo)
+            }
         }
         self.navigationController?.popViewController(animated: true)
     }
-    
-    
     
     /*
      // MARK: - Navigation
